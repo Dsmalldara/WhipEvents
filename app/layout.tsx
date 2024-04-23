@@ -3,7 +3,6 @@ import { Amaranth } from "next/font/google";
 import { Poppins } from "next/font/google";
 import { Pompiere } from "next/font/google";
 import "./globals.css";
-import { Exo } from "next/font/google";
 import { Mulish } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight:['400','500','600','700'], variable:'--font-poppins',
 });
@@ -26,7 +25,6 @@ export const metadata: Metadata = {
     icon:'/icon.jpg'
   }
 };
-export const exo = Exo({ subsets: ["latin"], weight:['400','500','600','700'], variable:'--font-exo',})
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable } ${pompiere.variable} ${exo.variable}`}>{children}</body>
+      <body className={`${poppins.variable } ${pompiere.variable}`}>{children}</body>
     </html>
   );
 }

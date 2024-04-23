@@ -3,7 +3,6 @@ import { headerLink } from '@/constants'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { exo } from '../layout'
 
 function Navitems() {
   const pathname = usePathname()

@@ -9,7 +9,7 @@ export const headerLink:headerLinks[] = [
     },
     {
         title: 'Create Events',
-        href: 'events/create'
+        href: '/Event/createEvent'
     },
    
     {

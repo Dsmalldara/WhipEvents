@@ -1,6 +1,5 @@
 import Footer from "../SharedComp/Footer";
 import Header from "../SharedComp/Header";
-
 export default function RootLayout({
     children,
   }: Readonly<{

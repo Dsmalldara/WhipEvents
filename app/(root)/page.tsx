@@ -14,7 +14,7 @@ export default function Home() {
           <Image src="/pattern.svg" alt="pattern for home " width={80} height={80} className="ml-[-2rem] overflow-auto pb-1"/>
           <h1 className="headertext h1-bold ">
             Check out various events like
-            <span className=" pl-2 text-ble-400">Concerts,</span>
+            <span className=" pl-2 text-blue-400">Concerts,</span>
   <span className="text-blue-400   pl-2 pr-2"> Conferences</span>  
       on our platform
             

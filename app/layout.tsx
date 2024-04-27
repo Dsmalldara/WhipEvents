@@ -7,17 +7,13 @@ import { Mulish } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight:['400','500','600','700'], variable:'--font-poppins',
 });
 const pompiere = Pompiere({ subsets: ["latin"], weight:['400'], variable:'--font-pompiere',})
-const amaranth = Amaranth({
-  subsets: ["latin"],
-  weight:['400'],
-  variable:'--font-amaranth',
-})
 
-const mulish = Mulish({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-mulish',
-});
+
+// const mulish = Mulish({
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600', '700'],
+//   variable: '--font-mulish',
+// });
 export const metadata: Metadata = {
   title: "WhipEvents",
   description: "get access to the best events in town",

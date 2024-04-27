@@ -1,16 +1,17 @@
-import { Document } from "mongodb"
-import { Schema, model, models } from "mongoose"
- export interface categoryType extends Document{
-    _id:string,
-    name: string;
- }
-const CategroySchema = new Schema({
-    id:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    name:{type:String, required:true, unique:true}
+import { Document, Schema, model, models } from "mongoose";
+
+export interface ICategory extends Document {
+  _id: string;
+  name: string;
+}
+
+const CategorySchema = new Schema({
+  name: { type: String, required: true, unique: true },
 })
- const Category = models.Category || model('category', CategroySchema)
- export default Category
+
+const Category = models.Category || model('Category', CategorySchema);
+
+export default Category;
+//models.Category
+
+

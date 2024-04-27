@@ -1,4 +1,4 @@
-import EventsForm from "@/components/eventsForm"
+import EventsForm from "@/components/EventsForm";
 function createEvent() {
   return (
     <>
@@ -7,7 +7,7 @@ function createEvent() {
         Create Event
       </h3>
     </section>
-    <div className="wrapper my-5 shadow-sm">
+    <div className="wrapper my-5 shadow-sm bg-[#d3cdcd]">
       <EventsForm/>
     </div>
     </>

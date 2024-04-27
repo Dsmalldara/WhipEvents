@@ -14,21 +14,53 @@ import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import Image from "next/image"
 import DatePicker from "react-datepicker";
-
+import { Checkbox } from "@/components/ui/checkbox"
 import "react-datepicker/dist/react-datepicker.css";
-function EventsForm() {
+import { useUploadThing } from "@/lib/uploadthing"
+import { EventTypes } from "@/lib/database/models/eventModel"
+import {useRouter} from 'next/navigation'
+type eventFormType = {
+  event?:  EventTypes,
+  eventId?:string,
+  type?:'update' | 'create',
+  userId?:string
+}
+ function EventsForm({event,eventId,type}:eventFormType) {
+  const router = useRouter()
+  const initialValues = event && type === 'update' 
+  ? { 
+    ...event, 
+    startDateTime: new Date(event.startDateTime), 
+    endDateTime: new Date(event.endDateTime) 
+  }
+  : eventValues
   const [files,setFiles] = useState([])
-
+    const {startUpload} = useUploadThing("imageUploader")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues:   eventValues,})
       // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+ function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+  const getImageData=async()=>{
+  let uploadImage = values.imageUrl
+  if(files.length > 0 ){
+    const uploadedImages = await startUpload(files)
+    if(!uploadedImages){
+     return  // exiting out of the uploaded image if it doesnt exist
+    }
+    uploadImage  =  uploadedImages[0].url
   }
-    
+}
+ }
+
+    // if (type === 'create'){
+    //   const createEvent = await createEvents(event:{...values, imageUrl: uploadImage}),
+
+    //   )
+    // }
+  
   return (
     <Form {...form} >
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 md:gap-12 md:w-[90%] md:mx-auto  w-full">
@@ -53,7 +85,7 @@ function EventsForm() {
           <FormItem  className="w-full">
             <FormLabel>Event's Category</FormLabel>
             <FormControl>
-              <Dropdown  value={field.value} onChangehandler={field.onChange}  />
+              <Dropdown  value={field.value} onChangeHandler={field.onChange}  />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -107,7 +139,7 @@ function EventsForm() {
             <FormControl >
               <div className="flex flex-center pl-[1rem]  bg-grey-50 rounded-full">
               <Image  src='/location.png' alt="location icon" height={20} width={20} className=""/>
-              <Input placeholder="event's locatioon" {...field}  className="input-field "/>
+              <Input placeholder="event's location" {...field}  className="input-field "/>
                 </div>
             </FormControl>
             <FormMessage />
@@ -121,10 +153,8 @@ function EventsForm() {
         name="startDate"
         render={({ field }) => (
           <FormItem  className="" >
-            <FormLabel>
-             </FormLabel>
             <FormControl>
-            <div className="flex flex-center bg-grey-50 rounded-full w-full  gap-4 input-field cursor-pointer">
+            <div className="flex flex-center bg-grey-50 rounded-full w-full  gap-2 [x-4 pr-2] input-field cursor-pointer">
            <Image src="/calendar.png" alt="calendar icon" height={20} width={20} className=""/>
               start date:
            <DatePicker
@@ -149,10 +179,8 @@ function EventsForm() {
         name="endDate"
         render={({ field }) => (
           <FormItem>
-            <FormLabel  className="flex flex-row">
-          </FormLabel>
             <FormControl>
-           <div className="flex flex-center bg-grey-50 rounded-full w-full gap-4 input-field cursor-pointer">
+           <div className="flex flex-center bg-grey-50 rounded-full w-full gap-2 input-field cursor-pointer px-4 pr-2">
            <Image src="/calendar.png" alt="calendar icon" height={20} width={20} className=""/>
               end date:
            <DatePicker
@@ -172,7 +200,70 @@ function EventsForm() {
         )}
       />
         </div>
-      <Button type="submit" className="md:w-[60%] mx-auto">Submit</Button>
+        <div className="flex flex-col md:flex-row gap-5 md:gap-8 ">
+       <div className="flex flex-row bg-grey-50 w-full items-center rounded-full ">
+       <FormField
+        control={form.control}
+        name="price"
+        render={({ field }) => (
+          <FormItem  className="w-full">
+            <FormControl>
+             <div className="flex flex-center pl-[1rem]  bg-grey-50 rounded-full">
+              <Image  src='/dollar-symbol.png' alt="price icon" height={20} width={20} className=""/>
+              <Input placeholder="event price" {...field} type="number" className="bg-grey-50 w-[80%] input-field-3 p-regular-16"/>
+                </div>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+       <FormField
+        control={form.control}
+        name="isFree"
+        render={({ field }) => (
+          <FormItem  className="">
+            <FormControl>
+            <div className="flex items-center space-x-2">
+            <Checkbox id="isFree" 
+      onCheckedChange={field.onChange}
+      checked={field.value}
+      />
+            <Label
+        htmlFor="isFree"
+        className="text-sm font-[300] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 whitespace-nowrap pr-4">
+        Free event
+      </Label>
+    </div>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+       </div>
+      <FormField
+        control={form.control}
+        name="url"
+        render={({ field }) => (
+          <FormItem  className="w-full">
+            <FormControl>
+            <div className="flex flex-center pl-[1rem]  bg-grey-50 rounded-full">
+              <Image  src='/link.png' alt="link icon" height={20} width={20} className=""/>
+              <Input placeholder="link to organizer's info" {...field}  type="string" className="input-field p-regular-16"/>
+                </div>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+        </div>
+      <Button type="submit" className="md:w-[60%] mx-auto"
+      disabled={form.formState.isSubmitting}
+      size="lg"
+      >
+       {
+        form.formState.isSubmitting ? 'Submitting...' : type === 'update' ? 'Update Event' : 'Create Event'
+       }
+      </Button>
     </form>
   </Form>
   )

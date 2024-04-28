@@ -16,12 +16,13 @@ async function Header() {
             <Link href='/' className='w-36 antialiased text-purple-800'>
             WhipEvents
             </Link>
-            <nav className=' hidden w-full md:flex-between max-w-xs'>
+            <nav className=' hidden w-full md:flex-between max-w-xs md:pr-4'>
               <Navitems/>
             </nav>
-            <div className='w-32 mr-8 flex gap-4 justify-end'>
+            <div className='w-32 mr-4   flex gap-4 justify-end'>
 
-             {
+           <div>
+           {
                 user ?  
               <div className=" ml-[-2rem] flex flex-row  gap-2 pr-[2rem]">
                  <img src={user.picture || 'imageUrl'} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' />
@@ -31,14 +32,15 @@ async function Header() {
                 </div>
                 :
                 <div className=' flex font-sans font-bold'>
-                                        <Button asChild className=' px-6 rounded-full  shadow' size='sm'>
+                                        <Button asChild className=' md:px-6 px-3 rounded-full mr-2 shadow' size='sm'>
                                         <LoginLink>Login</LoginLink>
                                         </Button>
-                                        <Button asChild className=' px-6 rounded-full  shadow' size='sm'>
+                                        <Button asChild className=' md:px-6 px-3 rounded-full  shadow' size='sm'>
                                         <RegisterLink>Sign up</RegisterLink>                                      
                                         </Button>  
                                         </div>
                 }
+           </div>
                 <MobileNav/>
             </div>
         </div>

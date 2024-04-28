@@ -9,8 +9,9 @@ import { convertFileToUrl } from '@/lib/utils'
 
 type FileUploaderProps = {
   onFieldChange: (url: string) => void
-  imageUrl: string
-  setFiles: Dispatch<SetStateAction<File[]>>
+  imageUrl: string,
+  // setFiles: Dispatch<SetStateAction<File[]>>
+  setFiles:any
 }
 
 export function FileUploader({ imageUrl, onFieldChange, setFiles }: FileUploaderProps) {

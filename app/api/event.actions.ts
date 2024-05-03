@@ -3,9 +3,12 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/eventModel";
 import User from "@/lib/database/models/userModel";
 import { handleError } from "@/lib/utils";
-
-
-export const createEvent = async ({ event, loggedInUserId }) => {
+ 
+type createEventType={
+  event:any,
+  loggedInUserId:any
+}
+export const createEvent = async ({ event, loggedInUserId }:createEventType) => {
   if (!loggedInUserId || loggedInUserId === null) throw new Error("user not logged in");
   
   try {

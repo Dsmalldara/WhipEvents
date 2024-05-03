@@ -12,7 +12,7 @@ export default function Home() {
      {/* wrapper makes sure that the content doesnt expand past it normal size */}
       <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0 ">
         <div className="flex flex-col px-6 justify-center relative">
-          <Image src="/pattern.svg" alt="pattern for home " width={80} height={80} className="ml-[-2rem] overflow-auto pb-1"/>
+          <Image src="/pattern2.png" alt="pattern for home " width={80} height={80} className="ml-[-2rem] overflow-auto pb-1"/>
           <h1 className="headertext h1-bold ">
             Check out various events like
             <span className=" pl-2 text-blue-400">Concerts,</span>
@@ -29,7 +29,7 @@ export default function Home() {
         </Link>
         </Button>
         <Image  src='/Line 13.png' alt="elipse  for header section" height={65} width={65} className="absolute bottom-[14rem]  md:bottom-[8rem] md:left-[1.4rem] left-[-0.4rem] overflow-hidden"/>
-        <Image src="/pattern.svg" alt="pattern for home " width={70} height={70} className="absolute rotate-[345deg] bottom-[50%] right-[10%]"/>
+        <Image src="/pattern2.png" alt="pattern for home " width={70} height={70} className="absolute rotate-[345deg] bottom-[50%] right-[10%]"/>
         </div>
        <div className="relative  w-[300px] h-[27rem] ml-auto mr-[3rem] md:mr-[4rem]">
         {/* <div className="relative "> */}

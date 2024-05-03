@@ -14,7 +14,7 @@ async function createEvent() {
       </h3>
     </section>
     <div className="wrapper py-5 shadow-sm bg-[#d3cdcd]">
-      <EventsForm type="create" loggedInUserId={loggedInUserId} event={{}} />
+      <EventsForm type="create" loggedInUserId={loggedInUserId} event={undefined} />
     </div>
     </>
   )

@@ -26,7 +26,8 @@ type eventFormType = {
   event:  EventTypes,
   // eventId?:string,
   type:'create'|'update',
-  loggedInUserId:any // Specify the type argument for the Array type.
+  loggedInUserId:any, // Specify the type argument for the Array type.
+  event:any
 }
  function EventsForm({ event, type = 'create',loggedInUserId}: eventFormType) {
   const [files,setFiles] = useState([])
@@ -42,7 +43,6 @@ type eventFormType = {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues:  initialValues})
-        console.log(type)
 async  function onSubmit(values: z.infer<typeof formSchema>) {
   let uploadImage = values.imageUrl
   if(files.length > 0 ){
@@ -65,11 +65,11 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
     }
    }
    catch(error){
+    toast.error("an error occured while creating event")
     console.log(error)
    }
 } 
 }
-console.log(event)
   return (
     <Form {...form} >
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 md:gap-12 md:w-[90%] md:mx-auto  w-full">

@@ -1,11 +1,10 @@
 // ====== USER PARAMS
 export type CreateUserParams = {
-    clerkId: string
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    photo: string
+  id: string ,
+  family_name:string ,
+  given_name:string ,
+  picture:string,
+  email:string
   }
   
   export type UpdateUserParams = {
@@ -147,3 +146,4 @@ export type CreateUserParams = {
     params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
   }
+  

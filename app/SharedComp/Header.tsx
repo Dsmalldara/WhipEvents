@@ -1,7 +1,7 @@
 'use server'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navitems from './Navitems'
 import MobileNav from './MobileNav'
 import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
@@ -25,7 +25,7 @@ async function Header() {
            {
                 user ?  
               <div className=" ml-[-2rem] flex flex-row  gap-2 pr-[2rem]">
-                 <img src={user.picture || 'imageUrl'} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' />
+                 <img src={user.picture || "https://avatar.vercel.sh/rauchg"} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' />
                   <Button asChild className=' px-6 rounded-full  shadow' size='sm'>
                   <LogoutLink>Logout</LogoutLink>
                   </Button>
@@ -37,9 +37,11 @@ async function Header() {
                                         </Button>
                                         <Button asChild className=' md:px-6 px-3 rounded-full  shadow' size='sm'>
                                         <RegisterLink>Sign up</RegisterLink>                                      
-                                        </Button>  
+                                        </Button> 
+                                       
                                         </div>
                 }
+
            </div>
                 <MobileNav/>
             </div>

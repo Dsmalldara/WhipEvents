@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { Pompiere } from "next/font/google";
 import "./globals.css";
 import { Mulish } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 const poppins = Poppins({ subsets: ["latin"], weight:['400','500','600','700'], variable:'--font-poppins',
 });
 const pompiere = Pompiere({ subsets: ["latin"], weight:['400'], variable:'--font-pompiere',})
@@ -28,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable } ${pompiere.variable}`}>{children}</body>
+      <body className={`${poppins.variable } ${pompiere.variable}`}>{children}
+      <Toaster position="top-left"/>
+      </body>
     </html>
   );
 }

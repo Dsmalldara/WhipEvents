@@ -19,48 +19,57 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useUploadThing } from "@/lib/uploadthing"
 import { EventTypes } from "@/lib/database/models/eventModel"
 import {useRouter} from 'next/navigation'
+import { createEvent } from "@/app/api/event.actions"
+import { toast } from 'react-hot-toast';
+
 type eventFormType = {
-  event?:  EventTypes,
-  eventId?:string,
-  type?:'update' | 'create',
-  userId?:string
+  event:  EventTypes,
+  // eventId?:string,
+  type:'create'|'update',
+  loggedInUserId:any // Specify the type argument for the Array type.
 }
- function EventsForm({event,eventId,type}:eventFormType) {
-  const router = useRouter()
+ function EventsForm({ event, type = 'create',loggedInUserId}: eventFormType) {
+  const [files,setFiles] = useState([])
   const initialValues = event && type === 'update' 
   ? { 
     ...event, 
     startDateTime: new Date(event.startDateTime), 
     endDateTime: new Date(event.endDateTime) 
   }
-  : eventValues
-  const [files,setFiles] = useState([])
+  : eventValues;
+  const router = useRouter();
     const {startUpload} = useUploadThing("imageUploader")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues:   eventValues,})
-      // 2. Define a submit handler.
- function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-  const getImageData=async()=>{
+        defaultValues:  initialValues})
+        console.log(type)
+async  function onSubmit(values: z.infer<typeof formSchema>) {
   let uploadImage = values.imageUrl
   if(files.length > 0 ){
     const uploadedImages = await startUpload(files)
     if(!uploadedImages){
-     return  // exiting out of the uploaded image if it doesnt exist
+      return
     }
-    uploadImage  =  uploadedImages[0].url
-  }
+    uploadImage =  uploadedImages[0].url
 }
- }
-
-    // if (type === 'create'){
-    //   const createEvent = await createEvents(event:{...values, imageUrl: uploadImage}),
-
-    //   )
-    // }
-  
+  if (type === 'create'){
+   try{
+    const newEvent = await createEvent({
+      event: { ...values, imageUrl: uploadImage },
+      loggedInUserId
+    });
+    if (newEvent) {
+      form.reset();
+      // router.push(`/events/${newEvent._id}`)
+      toast.success('Event created successfully')
+    }
+   }
+   catch(error){
+    console.log(error)
+   }
+} 
+}
+console.log(event)
   return (
     <Form {...form} >
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 md:gap-12 md:w-[90%] md:mx-auto  w-full">
@@ -80,7 +89,7 @@ type eventFormType = {
       />
        <FormField
         control={form.control}
-        name="categroyId"
+        name="categoryId"
         render={({ field }) => (
           <FormItem  className="w-full">
             <FormLabel>Event's Category</FormLabel>
@@ -135,7 +144,7 @@ type eventFormType = {
         name="location"
         render={({ field }) => (
           <FormItem  className="w-full">
-            <FormLabel>Event's Location</FormLabel>
+            <FormLabel>Event's Location i.e online</FormLabel>
             <FormControl >
               <div className="flex flex-center pl-[1rem]  bg-grey-50 rounded-full">
               <Image  src='/location.png' alt="location icon" height={20} width={20} className=""/>
@@ -259,14 +268,16 @@ type eventFormType = {
       <Button type="submit" className="md:w-[60%] mx-auto"
       disabled={form.formState.isSubmitting}
       size="lg"
+
       >
-       {
-        form.formState.isSubmitting ? 'Submitting...' : type === 'update' ? 'Update Event' : 'Create Event'
-       }
+        {form.formState.isSubmitting ? (
+            'Submitting...'
+          ): `${type} Event `}
       </Button>
     </form>
   </Form>
   )
 }
+
 
 export default EventsForm;

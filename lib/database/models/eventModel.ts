@@ -1,9 +1,9 @@
 import { Document } from "mongodb";
 import { Schema, model, models } from "mongoose";
-
+import Category from "./categoryModel";
 export interface EventTypes extends Document {
-    id: string;
-    name: string;
+    // id: string;
+    title: string;
     description: string;
     location: string;
     imageUrl: string;
@@ -12,24 +12,12 @@ export interface EventTypes extends Document {
     price: string;
     isFree: boolean;
     url: string;
-    category: {
-        _id:string,
-        name:string
-    } 
-    organizer?: {
-        _id:String,
-        firstName:string,
-        lastName:string,
-        email:string
-    }}
+    categoryId: string;
+}
 
  const EventSchema = new Schema({
-    id:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    name:{
+ 
+    title:{
         type:String,
         required:true
     },
@@ -57,25 +45,30 @@ export interface EventTypes extends Document {
     },
     price:{
         type:String,
-        required:true
+        required:false
     },
     isFree:{
         type:Boolean,
-        required:true
+        required:false
     },
     url:{
+        type:String,
+        required:true
+    },
+    categoryId:{
         type:String,
         required:true
     },
     category:{
         type:Schema.Types.ObjectId,
         ref:'Category',
-        required:true
-    },
-    organizer:{
-        type:Schema.Types.ObjectId,
-        ref:'Organizer',
         required:false
+    },
+    loggedInUser:{
+        type:Schema.Types.String,
+        ref:'User',
+        unique:false,
+        required:true
     }
 
  })

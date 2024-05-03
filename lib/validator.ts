@@ -6,7 +6,7 @@ export const formSchema = z.object({
     imageUrl:z.string(),
     startDate:z.date(),
     endDate:z.date(),
-    categroyId:z.string(),
+    categoryId:z.string(),
     price:z.string(),
     isFree:z.boolean(),
     url:z.string().url(),

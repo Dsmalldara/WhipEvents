@@ -23,11 +23,9 @@ import { createEvent } from "@/app/api/event.actions"
 import { toast } from 'react-hot-toast';
 
 type eventFormType = {
-  event:  EventTypes,
-  // eventId?:string,
+  event:  any,
   type:'create'|'update',
   loggedInUserId:any, // Specify the type argument for the Array type.
-  event:any
 }
  function EventsForm({ event, type = 'create',loggedInUserId}: eventFormType) {
   const [files,setFiles] = useState([])

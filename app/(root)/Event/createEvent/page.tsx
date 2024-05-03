@@ -1,5 +1,6 @@
 'use server'
 import EventsForm from "@/components/EventsForm";
+import { EventTypes } from "@/lib/database/models/eventModel";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 async function createEvent() {
   const {getUser} = getKindeServerSession()
@@ -13,7 +14,7 @@ async function createEvent() {
       </h3>
     </section>
     <div className="wrapper py-5 shadow-sm bg-[#d3cdcd]">
-    <EventsForm type="create" loggedInUserId={loggedInUserId}   />
+      <EventsForm type="create" loggedInUserId={loggedInUserId} event={{}} />
     </div>
     </>
   )

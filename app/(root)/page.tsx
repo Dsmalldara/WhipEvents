@@ -1,14 +1,24 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-export default function Home() {
+import EventCollection from "./Event/EventCollection";
+import { fetchAllEvents } from "../api/event.actions";
+export default async function Home() {
   console.log(process.env.MONGODB_URI)
    const emojis = [
     "😊",
   ];
+  const events = await fetchAllEvents({
+    query:'',
+    category:'',
+    page:1,
+    limit:10,
+
+   })
+   
   return (
    <>
-    <section className="bg-primary-50 bg-dotted-pattern py-4 md:py-7  bg-contain">
+    <section className="bg-primary-50  py-4 md:py-7  bg-contain">
      {/* wrapper makes sure that the content doesnt expand past it normal size */}
       <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0 ">
         <div className="flex flex-col px-6 justify-center relative">
@@ -69,6 +79,14 @@ export default function Home() {
         Search
         Categories
       </div>
+      <EventCollection  data={events?.data} 
+      emptyTitle="No Events Available"
+      emptyStateSummary="No events available check later"
+      eventCollectionType="All_events"
+      limit={10}
+      page={1}
+      totalPages={events?.totalPages}
+      />
     </section>
     </>
 

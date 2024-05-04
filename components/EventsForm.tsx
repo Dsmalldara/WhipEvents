@@ -58,7 +58,7 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
     });
     if (newEvent) {
       form.reset();
-      // router.push(`/events/${newEvent._id}`)
+      router.push(`/Event/${newEvent._id}`)
       toast.success('Event created successfully')
     }
    }

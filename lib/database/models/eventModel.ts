@@ -65,12 +65,12 @@ export interface EventTypes extends Document {
         required:false
     },
     loggedInUser:{
-        type:Schema.Types.String,
+        type:Schema.Types.ObjectId,
         ref:'User',
         unique:false,
         required:true
     }
 
  })
- const Event = models.Event || model('event', EventSchema)
+ const Event = models.Event || model('Event', EventSchema)
  export default Event

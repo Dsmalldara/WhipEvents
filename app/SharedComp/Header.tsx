@@ -11,7 +11,7 @@ async function Header() {
   const user = await getUser()
   console.log(user)
   return (
-    <header className="w-full border-b border-b-gray-400 bg-primary-50">
+    <header className="w-full border-b border-b-gray-400 bg-primary-50 shadow-md">
         <div className='wrapper flex items-center justify-between'>
             <Link href='/' className='w-36 antialiased text-purple-800'>
             WhipEvents

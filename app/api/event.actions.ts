@@ -5,6 +5,7 @@ import User from "@/lib/database/models/userModel";
 import { handleError } from "@/lib/utils";
 import Category from "@/lib/database/models/categoryModel";
 import { json } from "stream/consumers";
+import { revalidatePath } from "next/cache";
  
 type createEventType={
   event:any,
@@ -29,7 +30,7 @@ export const createEvent = async ({ event, loggedInUserId }:createEventType) => 
 };
    const populateEvent = async(query:any)=>{
     return query
-    .populate({path:'loggedInUser', model:User, select:'_id family_name given_name'})
+    .populate({path:'loggedInUser', model:User, select:'_id id family_name given_name'})
     .populate({path:'category', model:Category, select:'_id name'})
    }
 export const getEventById = async(eventId:string)=>{
@@ -62,6 +63,50 @@ export const fetchAllEvents = async ({query,category,limit=10,page})=>{
       data:JSON.parse(JSON.stringify(events)),
       totalPages:Math.ceil(totalEvents/limit)
     }
+  }
+  catch(error){
+    handleError(error)
+  }
+}
+type deletedEventProps  = {
+  eventId :string,
+  path:string
+}
+export const deleteEvent = async ({eventId,path}:deletedEventProps)=>{
+  try{
+    await connectToDatabase()
+    const deletedEvent = await Event.findByIdAndDelete(eventId)
+    revalidatePath(path)
+
+  }
+  catch(error){
+    handleError(error)
+  }
+}
+const populateEvent2 = async(query:any)=>{
+  return query
+  .populate({path:'loggedInUser', model:User, select:'_id id family_name given_name'})
+ }
+ type updateEventProps = {
+    event:any,
+    loggedInUserId?:string,
+    path:any
+  }
+export const updateEvent = async ({event,loggedInUserId,path}:updateEventProps)=>{
+  try{
+    await connectToDatabase()
+    const getEventById =  await populateEvent2(Event.findById(event._id))
+    if(!getEventById || getEventById.loggedInUser.id !== loggedInUserId){
+      throw new Error ("You're not authorized to add new event")
+    }
+   const UpdateEvent = await Event.findByIdAndUpdate(getEventById._id,{
+    ...event,category:event.categoryId
+   },
+  {
+    new:true
+  })
+  revalidatePath(path)
+  return JSON.parse(JSON.stringify(UpdateEvent))
   }
   catch(error){
     handleError(error)

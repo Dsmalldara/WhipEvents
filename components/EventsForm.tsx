@@ -19,21 +19,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useUploadThing } from "@/lib/uploadthing"
 import { EventTypes } from "@/lib/database/models/eventModel"
 import {useRouter} from 'next/navigation'
-import { createEvent } from "@/app/api/event.actions"
+import { createEvent, updateEvent } from "@/app/api/event.actions"
 import { toast } from 'react-hot-toast';
+import {LoginAlertDialog} from "@/app/SharedComp/LoginAlertDialog"
 
 type eventFormType = {
-  event:  any,
+  event?:  any,
   type:'create'|'update',
-  loggedInUserId:any, // Specify the type argument for the Array type.
+  loggedInUserId?:any, // Specify the type argument for the Array type.
 }
  function EventsForm({ event, type = 'create',loggedInUserId}: eventFormType) {
   const [files,setFiles] = useState([])
-  const initialValues = event && type === 'update' 
+  const initialValues = event && type === 'update'  
   ? { 
     ...event, 
-    startDateTime: new Date(event.startDateTime), 
-    endDateTime: new Date(event.endDateTime) 
+    startDate: new  Date(event.startDate),
+    endDate: new Date(event.endDate) 
   }
   : eventValues;
   const router = useRouter();
@@ -42,7 +43,8 @@ type eventFormType = {
         resolver: zodResolver(formSchema),
         defaultValues:  initialValues})
 async  function onSubmit(values: z.infer<typeof formSchema>) {
-  let uploadImage = values.imageUrl
+  
+    let uploadImage = values.imageUrl
   if(files.length > 0 ){
     const uploadedImages = await startUpload(files)
     if(!uploadedImages){
@@ -50,8 +52,9 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
     }
     uploadImage =  uploadedImages[0].url
 }
-  if (type === 'create'){
-   try{
+
+  if (type === 'create'  ){
+  try{
     const newEvent = await createEvent({
       event: { ...values, imageUrl: uploadImage },
       loggedInUserId
@@ -65,11 +68,40 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
    catch(error){
     toast.error("an error occured while creating event")
     console.log(error)
-   }
-} 
+   } 
+  }
+  if (type === 'update'  ){
+    if(!event){
+      router.back()
+      return 
+    }
+    try{
+      const updatedEvent = await updateEvent({
+        loggedInUserId:loggedInUserId,
+        event: { ...values, imageUrl: uploadImage, _id:event._id },
+        path:'/Event/[id]/update'
+      })
+      if (updatedEvent){
+        form.reset();
+        router.push(`/Event/${updatedEvent._id}`)
+        toast.success('Event updated successfully')
+      }
+     }
+     catch(error){
+      toast.error("an error occured while creating event")
+      console.log(error)
+     } 
+    }
 }
   return (
     <Form {...form} >
+      <div>
+        <h3 className="h3-medium heardertext mb-4 text-center md:items-center text-slate-800 md:justify-center w-[36] flex sm:text-left">
+          {
+            type === 'create' ? 'Create Event' : "Update Event"
+          }
+        </h3>
+      </div>
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 md:gap-12 md:w-[90%] md:mx-auto  w-full">
       <div className="flex flex-col gap-5 md:gap-8 md:flex-row">
       <FormField
@@ -273,6 +305,7 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
           ): `${type} Event `}
       </Button>
     </form>
+    {/* <LoginAlertDialog type={type}/> */}
   </Form>
   )
 }

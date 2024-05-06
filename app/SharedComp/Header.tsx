@@ -9,11 +9,10 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 async function Header() {
   const {getUser} = getKindeServerSession()
   const user = await getUser()
-  console.log(user)
   return (
     <header className="w-full border-b border-b-gray-400 bg-primary-50 shadow-md">
         <div className='wrapper flex items-center justify-between'>
-            <Link href='/' className='w-36 antialiased text-purple-800'>
+            <Link href='/' className='w-36 antialiased text-purple-800 md:px-4 footer-font'>
             WhipEvents
             </Link>
             <nav className=' hidden w-full md:flex-between max-w-xs md:pr-4'>

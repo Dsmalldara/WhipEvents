@@ -13,7 +13,7 @@ import Navitems from './Navitems';
 
 function MobileNav() {
   return (
-    <nav className=' text md:hidden'>
+    <nav className=' text md:hidden mr-[-1.4rem]'>
         <Sheet >
   <SheetTrigger className='align-middle mt-2'>
     <IoMdMenu className='text-2xl '/>

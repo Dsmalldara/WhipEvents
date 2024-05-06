@@ -5,9 +5,11 @@ import { Pompiere } from "next/font/google";
 import "./globals.css";
 import { Mulish } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import {Ojuju} from "next/font/google"
 const poppins = Poppins({ subsets: ["latin"], weight:['400','500','600','700'], variable:'--font-poppins',
 });
 const pompiere = Pompiere({ subsets: ["latin"], weight:['400'], variable:'--font-pompiere',})
+const ojuju = Ojuju({subsets:['latin'], weight:['400','500','600','700'], variable:'--font-ojuju'})
 
 
 // const mulish = Mulish({
@@ -29,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable } ${pompiere.variable}`}>{children}
+      <body className={`${poppins.variable } ${pompiere.variable} ${ojuju.variable}`}>{children}
       <Toaster position="top-left"/>
       </body>
     </html>

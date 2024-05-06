@@ -6,6 +6,7 @@
   --font-poppins: 'Poppins', sans-serif;
   --font-exo: 'Exo', sans-serif;
   --font-amaranth: 'Amaranth', sans-serif;
+  --font-ojuju: 'Ojuju', sans-serif;
 }
 .headertext{
   font-family:  var(--font-pompiere)
@@ -13,6 +14,14 @@
 }
 .headerp{
   font-family : var(--font-mulish);
+}
+.bg-primary-footer{
+  background-color: #D6D2C9;
+}
+.footer-font{
+  font-family: var(--font-ojuju);
+  font-weight: 500;
+  font-size: 24px;
 }
 @layer base {
   :root {

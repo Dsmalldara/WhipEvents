@@ -22,7 +22,7 @@ export default async function Home() {
      {/* wrapper makes sure that the content doesnt expand past it normal size */}
       <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0 ">
         <div className="flex flex-col px-6 justify-center relative">
-          <Image src="/Pattern2.png" alt="pattern for home " width={80} height={80} className="ml-[-2rem] overflow-auto pb-1"/>
+          <Image src="/Pattern2.png" alt="pattern for home " width={80} height={80} className=" overflow-auto pb-1"/>
           <h1 className="headertext h1-bold ">
             Check out various events like
             <span className=" pl-2 text-blue-400">Concerts,</span>
@@ -69,7 +69,7 @@ export default async function Home() {
         <Image  src='/Vector.svg' alt="elipse  for header section" height={25} width={15} className=""/>
         </div>
     </section>
-    <section id="events" className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12">
+    <section id="events" className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4">
       <h2 className="h2-medium  px-[0.1rem]">
         Trusted by
         <br />

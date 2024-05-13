@@ -4,10 +4,10 @@ import { handleError } from "@/lib/utils";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextResponse } from "next/server"
  export async function GET(){
-//   if (typeof window === 'undefined') {
-//     // Skip authentication logic during prerendering
-//     return NextResponse.redirect('http://localhost:3000')
-// }
+  if (typeof window === 'undefined') {
+    // Skip authentication logic during prerendering
+    return NextResponse.redirect('http://localhost:3000')
+}
     const {getUser} = getKindeServerSession()
         const user = await getUser()
         if(!user || user === null || !user.id) throw new Error ("user not logged in")

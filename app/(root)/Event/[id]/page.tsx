@@ -1,6 +1,6 @@
 import { getEventById, getSimilarEvents } from "@/app/api/event.actions";
 import { capitalize, formatDateTime } from "@/lib/utils";
-import Image from "next/image";
+import Image from "next/image"
 import EventCollection from "../EventCollection";
 import { CheckoutButton } from "../CheckoutButton";
 async function CreatedEvent({ params: { id } }: any) {

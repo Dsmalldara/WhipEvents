@@ -11,11 +11,10 @@ export const headerLink:headerLinks[] = [
         title: 'Create Events',
         href: '/Event/createEvent'
     },
-   
-    // {
-    //     title: 'Sign In',
-    //     href: '/sign-in'
-    // }
+    {
+        title:'Your Profile',
+        href:'/Event/Profile'
+    } 
 ]
 type eventValues = {
     title: string,

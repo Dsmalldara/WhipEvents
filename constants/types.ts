@@ -106,9 +106,12 @@ export type CreateUserParams = {
   export type CheckoutOrderParams = {
     eventTitle: string
     eventId: string
-    price: string
+    price?: any
     isFree: boolean
     buyerId: string
+    eventDate?: string
+    eventPrice?: string,
+    eventImage?:any
   }
   
   export type CreateOrderParams = {

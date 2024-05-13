@@ -20,7 +20,7 @@ function MobileNav() {
   </SheetTrigger>
   <SheetContent className='flex flex-col gap-6   bg-primary-50 md:hidden'>
    <div>
-    <h1 className=''>
+    <h1 className='navslide-font  text-purple-800'>
         whipEvents
     </h1>
     </div> 

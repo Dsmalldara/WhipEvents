@@ -9,10 +9,10 @@ export default async function Home() {
     "😊",
   ];
   const events = await fetchAllEvents({
-    query:'',
+    // query:'',
     category:'',
     page:1,
-    limit:10,
+    limit:9,
 
    })
    
@@ -41,19 +41,19 @@ export default async function Home() {
         <Image  src='/Line 13.png' alt="elipse  for header section" height={65} width={65} className="absolute bottom-[14rem]  md:bottom-[8rem] md:left-[1.4rem] left-[-0.4rem] overflow-hidden"/>
         <Image src="/Pattern2.png" alt="pattern for home " width={70} height={70} className="absolute rotate-[345deg] bottom-[50%] right-[10%]"/>
         </div>
-       <div className="relative  w-[300px] h-[27rem] ml-auto mr-[3rem] md:mr-[4rem]">
+       <div className="relative   w-[300px] h-[27rem] ml-auto mr-[3rem] md:mr-[4rem]">
         {/* <div className="relative "> */}
         <Image  src= "/heroImg.png"
         alt="hero section image for events app"
-        width={300}
-        height={200}
-        className=" rounded-sm  max-w-[70vh] md:h-[70vh] justify-center mx-auto object-center object-contain 2xl:max-h-[50vh] "
+        width={350}
+        height={300}
+        className=" rounded-md  max-w-[70vh] md:h-[70vh] justify-center mx-auto object-center object-contain 2xl:max-h-[50vh] md:shadow-none shadow "
         />
 
-                <div className=" before:absolute  before:top-[0%] md:before:top-[10%]  before:right-[100%] before:h-[4.5rem] before:w-[4.5rem] firstShape">
+                <div className=" before:absolute  before:top-[0%] md:before:top-[1.8%]  before:right-[100%] before:h-[4.5rem] before:w-[4.5rem] firstShape">
                 {/* <Image  src='/Ellipse 83.svg' alt="elipse  for header section" height={50} width={45} /> */}
                 </div>
-                <div className=" after:absolute after:bottom-[19%] md:after:bottom-[1.6rem]  after:right-[101%] after:h-[4.5rem] after:w-[4.2rem] after:rotate-[270deg] secondShape">
+                <div className=" after:absolute after:bottom-[4%] md:after:bottom-[0.2rem]  after:right-[101%] after:h-[4.5rem] after:w-[4.2rem] after:rotate-[270deg] secondShape">
                 {/* <Image  src='/Ellipse 83.svg' alt="elipse  for header section" height={50} width={45} /> */}
                 </div>
         {/* </div> */}
@@ -70,7 +70,7 @@ export default async function Home() {
         </div>
     </section>
     <section id="events" className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4">
-      <h2 className="h2-medium  px-[0.1rem]">
+      <h2 className="h2-medium  px-[0.1rem] footer-font">
         Trusted by
         <br />
          thousands  of Organizers

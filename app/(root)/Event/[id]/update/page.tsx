@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { getEventById, updateEvent } from "@/app/api/event.actions";
 import EventsForm from "@/components/EventsForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+export const metadata:Metadata={
+    title:{
+        absolute:"Update your event"
+    },
+    icons:{
+        icon:'/icon.jpg'
+      }
+}
 type IdType ={
     params:{
         id:string

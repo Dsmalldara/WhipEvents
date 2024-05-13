@@ -4,17 +4,9 @@ export interface orderSchema extends Document {
     createdAt: Date;
     updatedAt: Date;
     stripeId: string;
+    totalAmount: string;
     event: {
         title: string;
-        description: string;
-        // location: string;
-        // imageUrl: string;
-        // startDate: Date;
-        // endDate: Date;
-        // categoryId: Schema.Types.ObjectId;
-        // price: string;
-        // isFree: boolean;
-        // url: string;
     };
     buyer: {
         firstName: string;
@@ -37,6 +29,9 @@ const orderSchema = new Schema({
         type:String,
         required:true
     },
+    totalAmount: {
+        type: String,
+      },
     event:{
         type:Schema.Types.ObjectId,
         ref:'Event',

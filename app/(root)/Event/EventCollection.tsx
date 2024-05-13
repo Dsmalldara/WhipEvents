@@ -6,7 +6,7 @@ type EventCollectionType  = {
     emptyTitle: string,
     emptyStateSummary: string,
     eventCollectionType: 'eventCollection' | 'My_tickets' | 'All_events'
-    // limit: number,
+    limit: number,
     page: number | string,
     totalPages?: number,
     urlParamName?:string
@@ -34,8 +34,8 @@ async function EventCollection({data,emptyTitle,emptyStateSummary,eventCollectio
            </div>
         )
         : (
-            <div className='flex flex-col bg-primary-1000  items-center justify-between  px-[2rem] py-[8rem] rounded  shadow-md headerp md:w-[95%] mx-auto' >
-                <h3 className='h2-bold'>{emptyTitle}</h3>
+            <div className='flex flex-col bg-primary-50 not-found items-center justify-between  px-[2rem] py-[8rem] rounded antialiased  shadow-md headerp md:w-[95%] mx-auto' >
+                <h3 className='h3-medium'>{emptyTitle}</h3>
                 <p className='p-regular-24'>{emptyStateSummary}</p>
             </div>
         )

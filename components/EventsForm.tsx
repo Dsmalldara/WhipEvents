@@ -22,6 +22,7 @@ import {useRouter} from 'next/navigation'
 import { createEvent, updateEvent } from "@/app/api/event.actions"
 import { toast } from 'react-hot-toast';
 import {LoginAlertDialog} from "@/app/SharedComp/LoginAlertDialog"
+import LoadingComponent from '@/components/LoadingComponent'
 
 type eventFormType = {
   event?:  any,
@@ -43,7 +44,10 @@ type eventFormType = {
         resolver: zodResolver(formSchema),
         defaultValues:  initialValues})
 async  function onSubmit(values: z.infer<typeof formSchema>) {
-  
+    if (!loggedInUserId){
+      toast.error("you have to be logged in to create a new event")
+      return 
+    }
     let uploadImage = values.imageUrl
   if(files.length > 0 ){
     const uploadedImages = await startUpload(files)
@@ -65,11 +69,16 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
       toast.success('Event created successfully')
     }
    }
-   catch(error){
-    toast.error("an error occured while creating event")
-    console.log(error)
-   } 
+  catch (error) {
+    if ((error as any).response && (error as any).response.status === 403) {
+      <LoginAlertDialog type={type} />
+    } else {
+      toast.error('An error occurred while creating the event');
+      console.error(error);
+    }
   }
+} 
+  
   if (type === 'update'  ){
     if(!event){
       router.back()
@@ -84,11 +93,14 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
       if (updatedEvent){
         form.reset();
         router.push(`/Event/${updatedEvent._id}`)
-        toast.success('Event updated successfully')
+        setTimeout(()=>{
+          toast.success('Event updated successfully')
+        
+        },1500)
       }
      }
      catch(error){
-      toast.error("an error occured while creating event")
+      toast.error("an error occured while updating event")
       console.log(error)
      } 
     }
@@ -301,8 +313,8 @@ async  function onSubmit(values: z.infer<typeof formSchema>) {
 
       >
         {form.formState.isSubmitting ? (
-            'Submitting...'
-          ): `${type} Event `}
+            <LoadingComponent/>
+          ): `${type} Event 😊`}
       </Button>
     </form>
     {/* <LoginAlertDialog type={type}/> */}

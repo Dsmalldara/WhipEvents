@@ -14,7 +14,7 @@ import {
   import { MdDelete } from "react-icons/md";
 import { deleteEvent } from '@/app/api/event.actions';
 import { usePathname } from 'next/navigation';
-  
+import { capitalize } from '@/lib/utils'
   export    function DeleteEvent({eventId, eventName}:any) {
     const pathname = usePathname()
     let [isPending, startTransition] = useTransition()
@@ -27,7 +27,7 @@ import { usePathname } from 'next/navigation';
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              you're trying to delete <span className="p-bold-16 text-red-600"> {' '}{eventName} {' '} </span>  event. This will permanently delete your
+              you're trying to delete <span className="p-bold-16 text-red-600"> {' '} {capitalize(eventName)} {' '} </span>  event. This will permanently delete your
              event and remove your data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -41,7 +41,7 @@ import { usePathname } from 'next/navigation';
                 })
             }}
             // deleteEvent is a promise returned by deleteEvent function 
-            >{isPending ? 'deleting...' :'delete'}</AlertDialogAction>
+            >{isPending ? 'Deleting...' :'Delete 😔'}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

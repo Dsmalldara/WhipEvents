@@ -7,21 +7,37 @@
   --font-exo: 'Exo', sans-serif;
   --font-amaranth: 'Amaranth', sans-serif;
   --font-ojuju: 'Ojuju', sans-serif;
+  --font-monserrat: 'Montserrat', sans-serif;
+  --source_sans_3: 'Source Sans Pro', sans-serif;
 }
 .headertext{
   font-family:  var(--font-pompiere)
   
 }
+.notfound{
+ font-family: var(--font-exo)
+}
 .headerp{
   font-family : var(--font-mulish);
+}
+.profile{
+  font-family : var(--font-monserrat)
+}
+.profile-content{
+  font-family : var(--font-source_sans_3)
 }
 .bg-primary-footer{
   background-color: #D6D2C9;
 }
 .footer-font{
   font-family: var(--font-ojuju);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 24px;
+}
+.navslide-font{
+  font-family: var(--font-ojuju); 
+  font-size: 24px;
+  font-weight: 700;
 }
 @layer base {
   :root {

@@ -1,11 +1,11 @@
-import { formatDateTime } from '@/lib/utils'
+import { capitalize, formatDateTime } from '@/lib/utils'
 import Link from 'next/link'
 import React from 'react'
 import Image from "next/image";
 import { FiEdit } from "react-icons/fi"
 import { FaLocationDot } from "react-icons/fa6";
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { DeleteEvent } from '../(root)/Event/createEvent/DeleteEvent';
+import { DeleteEvent } from '../(root)/Event/DeleteEvent';
 
  type CardProps = {
     event:any,
@@ -42,12 +42,12 @@ async function Card({event,hasOrganized,hidePrice}:CardProps) {
                                 </div>
                             <div>
                                 <p className=" mt-2 sm:mt-0  "> {formatDateTime(event.startDate).dateOnly} </p>
-                                <p className=" line-clamp-32 text-bold text-black  p-medium-16  flex-1"> {event.title}</p>
+                                <p className=" line-clamp-32 text-bold text-black  p-medium-16  flex-1"> {capitalize(event.title)}</p>
                             </div>
                                 <div className="flex-between  w-full">
                                    <span className="flex gap-3">
                                    <p className="text-2xl text-slate-700"> <FaLocationDot/> </p> 
-                                    <p className="p-medium-16 "> {event.location} </p>
+                                    <p className="p-medium-16 "> {capitalize(event.location)} </p>
                                    </span>
                                 </div>      
                         </Link> 

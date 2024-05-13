@@ -6,7 +6,7 @@ import { NextResponse } from "next/server"
  export async function GET(){
   if (typeof window === 'undefined') {
     // Skip authentication logic during prerendering
-    return NextResponse.redirect('http://localhost:3000')
+    return NextResponse.redirect('https://whipevents.vercel.app')
 }
     const {getUser} = getKindeServerSession()
         const user = await getUser()

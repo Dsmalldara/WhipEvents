@@ -35,7 +35,7 @@ export default async function UserProfile(){
         </div>
            </div>
         <div className="flex md:flex-row flex-col  justify-between items-center gap-8 md:gap-4 py-5 px-4 md:px-6 md:py-8  overflow-hidden border-b border-b-slate-800 ">
-            <p className="w-full p-medium-24">
+            <p className="w-full  p-medium-16 md:p-medium-24">
                Planning on organizing a new Event for the public ?
             </p>
             <Button asChild className='md:justify-end px-6 rounded-full sm:w-full  shadow' size='lg'>

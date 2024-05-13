@@ -12,7 +12,7 @@ export async function CheckoutButton({event}:any) {
   return (
     <div className="flex items-center justify-center ">
       {isEventFinised ? (
-        <p>sorry this event has ended</p> ) 
+        <p>sorry this event has ended ❌</p> ) 
         : (
             <>
             {user ? (

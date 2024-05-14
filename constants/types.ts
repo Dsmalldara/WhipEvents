@@ -108,7 +108,7 @@ export type CreateUserParams = {
     eventId: string
     price?: any
     isFree: boolean
-    buyerId?: string
+    buyerId: string
     eventDate?: string
     eventPrice?: string,
     eventImage?:any

@@ -1,6 +1,8 @@
 'use server'
 import { CheckoutOrderParams, CreateOrderParams } from "@/constants/types"
+import { connectToDatabase } from "@/lib/database";
 import Order from "@/lib/database/models/orderModel";
+import User from "@/lib/database/models/userModel";
 import { handleError } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
@@ -42,11 +44,20 @@ export const checkoutOrder = async(order:CheckoutOrderParams)=>{
 
    
 }
+const populateUser: any = async (query: any) => {
+  return query
+    .populate({
+      path: "buyer",
+      model: User,
+      select: "_id id ",
+    })
+  }
 export const createOrder = async(order:CreateOrderParams)=>{
 try{
+  await connectToDatabase()
+  const findUser = await populateUser(User.find({id: order.buyerId})) //trying to get the user id and now use the _id 
   const newOrder = await Order.create({
-    order,event:order.eventId,buyer:order.buyerId
-  })
+    order,event:order.eventId,buyer:findUser._id })
  JSON.parse(JSON.stringify(newOrder))
 }
 catch(error){

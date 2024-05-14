@@ -33,7 +33,7 @@ userId:string,
           eventImage:event.imageUrl,
           eventPrice:event.price,
           isFree: event.isFree,
-          buyerId: event.buyer._id
+          buyerId: userId
         }
         await checkoutOrder(order)
     }

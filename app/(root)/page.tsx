@@ -9,11 +9,10 @@ export default async function Home() {
     "😊",
   ];
   const events = await fetchAllEvents({
-    // query:'',
+    query:'',
     category:'',
     page:1,
     limit:9,
-
    })
    
   return (

@@ -55,11 +55,11 @@ const populateUser: any = async (query: any) => {
 export const createOrder = async(order:CreateOrderParams)=>{
 try{
   await connectToDatabase()
-  const findUser = await populateUser(User.findOne({id: order.buyerId}))
-  const userId = findUser._id; 
+  // const findUser = await populateUser(User.findOne({id: order.buyerId}))
+  // const userId = findUser._id; 
   //trying to get the user id and now use the _id 
   const newOrder = await Order.create({
-    order,event:order.eventId,buyer:userId })
+    order,event:order.eventId })
  JSON.parse(JSON.stringify(newOrder))
 }
 catch(error){

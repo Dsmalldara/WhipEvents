@@ -6,6 +6,7 @@ import { handleError } from "@/lib/utils";
 import Category from "@/lib/database/models/categoryModel";
 import { json } from "stream/consumers";
 import { revalidatePath } from "next/cache";
+import { getAllCategories, getCategoriesByName } from "./category.actions";
 type createEventType = {
   event: any;
   loggedInUserId: any;
@@ -58,19 +59,25 @@ type fetchAllEvents = {
   category: string;
   limit: number;
   page: number;
+  query:string
 };
 export const fetchAllEvents = async ({
   category,
   limit = 10,
   page,
+  query
 }: fetchAllEvents) => {
   try {
     await connectToDatabase();
-    const conditions = {};
+    const skipQuery = (Number(page) - 1) * limit;
+    const titleCondition = query ? { title: { $regex: query, $options: 'i' } } : {}
+    const categoryCondition = category ? await getCategoriesByName(category) : null
+    const conditions = { $and: [titleCondition, categoryCondition ? { category: categoryCondition._id } : {}],}
     const eventQuery = Event.find(conditions)
       .sort({ createdAt: "desc" })
-      .skip(0)
+      .skip(skipQuery)
       .limit(limit);
+      
     const totalEvents = await Event.countDocuments(conditions);
     const events = await populateEvent(eventQuery);
     if (!events) {

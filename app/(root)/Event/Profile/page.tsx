@@ -38,7 +38,7 @@ export default async function UserProfile(){
             <p className="w-full  p-medium-16 md:p-medium-24">
                Planning on organizing a new Event for the public ?
             </p>
-            <Button asChild className='md:justify-end px-6 rounded-full sm:w-full  shadow' size='lg'>
+            <Button asChild className='md:justify-end px-6 rounded-full shadow' size='lg'>
                 <Link href='/Event/createEvent'>
                     Create Event  😊
                     </Link>

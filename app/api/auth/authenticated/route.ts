@@ -17,7 +17,7 @@ import { NextResponse } from "next/server"
               
                 const existingUser = await User.findOne({email: user.email})
                 if(existingUser){
-                return   NextResponse.redirect('http://localhost:3000')
+                return   NextResponse.redirect('https://whipevents.vercel.app')
                 }
               else  if(!existingUser){
                 await User.create({
@@ -27,7 +27,7 @@ import { NextResponse } from "next/server"
                   email: user.email || '',
                   id:user.id
                 })
-                return NextResponse.redirect('http://localhost:3000')
+                return NextResponse.redirect('https://whipevents.vercel.app')
               }
 
         }

@@ -27,3 +27,12 @@ export const getAllCategories = async () => {
     // console.log(error)
   }
 }
+export const getCategoriesByName = async (category:string)=>{
+  try {
+    connectToDatabase()
+    const categories = await Category.find({name:category})
+    return JSON.parse(JSON.stringify(categories))
+  } catch (error) {
+    handleError(error)
+  }
+}

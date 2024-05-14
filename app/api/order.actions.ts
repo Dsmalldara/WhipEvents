@@ -1,5 +1,6 @@
 'use server'
-import { CheckoutOrderParams } from "@/constants/types"
+import { CheckoutOrderParams, CreateOrderParams } from "@/constants/types"
+import Order from "@/lib/database/models/orderModel";
 import { handleError } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
@@ -30,7 +31,7 @@ export const checkoutOrder = async(order:CheckoutOrderParams)=>{
             buyerId:order.buyerId
         },
         mode: 'payment',
-        success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
+        success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/Event/Profile`,
         cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
       });
       if(!session){
@@ -40,4 +41,15 @@ export const checkoutOrder = async(order:CheckoutOrderParams)=>{
       return redirect(session.url!)
 
    
+}
+export const createOrder = async(order:CreateOrderParams)=>{
+try{
+  const newOrder = await Order.create({
+    order,event:order.eventId,buyer:order.buyerId
+  })
+ JSON.parse(JSON.stringify(newOrder))
+}
+catch(error){
+  handleError(error)
+}
 }

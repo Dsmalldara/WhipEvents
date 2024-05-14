@@ -36,7 +36,7 @@ async function EventCollection({data,emptyTitle,emptyStateSummary,eventCollectio
         : (
             <div className='flex flex-col bg-primary-50 not-found items-center justify-between  px-[2rem] py-[8rem] rounded antialiased  shadow-md headerp md:w-[95%] mx-auto' >
                 <h3 className='h3-medium'>{emptyTitle}</h3>
-                <p className='p-regular-24'>{emptyStateSummary}</p>
+                <p className='p-regular-24 footer-font'>{emptyStateSummary}</p>
             </div>
         )
     }

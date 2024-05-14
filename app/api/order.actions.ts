@@ -44,28 +44,6 @@ export const checkoutOrder = async(order:CheckoutOrderParams)=>{
 
    
 }
-const populateUser: any = async (query: any) => {
-  return query
-    .populate({
-      path: "buyer",
-      model: User,
-      select: "_id id ",
-    })
-  }
-// export const createOrder = async(order:CreateOrderParams)=>{
-// try{
-//   await connectToDatabase()
-//   const findUser = await populateUser(User.findOne({id: order.buyerId}))
-//   const userId = findUser._id; 
-//   //trying to get the user id and now use the _id 
-//   const newOrder = await Order.create({
-//     order,event:order.eventId,buyer:userId })
-//  JSON.parse(JSON.stringify(newOrder))
-// }
-// catch(error){
-//   handleError(error)
-// }
-// }
 export const createOrder = async (order: CreateOrderParams) => {
   try {
     await connectToDatabase();

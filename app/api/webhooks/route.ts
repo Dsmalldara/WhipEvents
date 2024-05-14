@@ -2,7 +2,6 @@ import stripe from 'stripe'
 import { NextResponse } from 'next/server'
 import { createOrder } from '../order.actions'
 
-
 export async function POST(request: Request) {
   const body = await request.text()
 
@@ -31,6 +30,7 @@ export async function POST(request: Request) {
       totalAmount: amount_total ? (amount_total / 100).toString() : '0',
       createdAt: new Date(),
     }
+
     const newOrder = await createOrder(order)
     return NextResponse.json({ message: 'OK', order: newOrder })
   }

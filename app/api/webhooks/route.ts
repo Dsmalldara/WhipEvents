@@ -33,6 +33,10 @@ export async function POST(request: Request) {
 
     const newOrder = await createOrder(order)
     return NextResponse.json({ message: 'OK', order: newOrder })
+  
+  }
+  if(!newOrder){
+    return NextResponse.json({ message: 'Order not created' })
   }
 
   return new Response('', { status: 200 })

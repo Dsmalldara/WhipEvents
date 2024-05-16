@@ -35,9 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'OK', order: newOrder })
   
   }
-  if(!newOrder){
-    return NextResponse.json({ message: 'Order not created' })
-  }
+
 
   return new Response('', { status: 200 })
 }

@@ -42,7 +42,7 @@ userId:string,
         <form action={checkoutForm} method="post">
             <Button type="submit" role="link" className="button sm:w-fit"  size="lg">
                 {
-                    event.isFree ? "Get Tickets" : `Buy Tickets for $${event.price}`
+                    event.isFree ? "Buy Ticket" : `Buy Ticket at $${event.price}`
                 }
             </Button>
         </form>

@@ -179,3 +179,16 @@ export const getSimilarEvents = async ({
     handleError(error);
   }
 };
+
+type queryParams = {
+  query: string
+}
+// getting a search result for events
+export async function searchEventsByTitle(title: string) {
+  try {
+    const events = await Event.find({ title: { $regex: title, $options: 'i' } });
+      return JSON.parse(JSON.stringify(events));
+  } catch (error) {
+    handleError(error);
+  }
+}

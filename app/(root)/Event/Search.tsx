@@ -31,7 +31,9 @@ function Search() {
         <Command>
   <CommandInput placeholder="search for events.." className="text-zinc-500" value={searchText} onValueChange={setSearchText}/>
   <CommandList>
-   
+  <CommandEmpty>
+  your result would be displayed here {'   '}
+    </CommandEmpty>
    {  searchText.length >0 ?(
     <CommandGroup heading="Suggestions">
     {
@@ -44,9 +46,7 @@ function Search() {
         ))
       }
     </CommandGroup>
-  ) :  <CommandEmpty>
-    "No results found" 
-    </CommandEmpty>}
+  ) : null}
   </CommandList>
 </Command>
 

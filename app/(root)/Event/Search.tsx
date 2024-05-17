@@ -1,6 +1,6 @@
 'use client'
-import {   Command, CommandDialog,  CommandEmpty,  CommandGroup,  CommandInput,CommandItem,CommandList,  CommandSeparator,   CommandShortcut, } from "@/components/ui/command"
-import { useEffect, useMemo, useState } from "react"
+import {   Command, CommandDialog,  CommandEmpty,  CommandGroup,  CommandInput,CommandItem,CommandList,  } from "@/components/ui/command"
+import { useEffect, useState } from "react"
 import { handleError } from "@/lib/utils";
 import Link from "next/link"
 import { searchEventsByTitle } from "@/app/api/event.actions";
@@ -24,11 +24,6 @@ function Search() {
     };
       getSearch();
   }, [debouncedSearchText]); // Trigger effect on debounced search text
-
-  // const renderedResultText = useMemo(() => {
-  //   return resultText;
-  // }, [resultText]);
-  // Rest of your component code
   return (
     <div className="  max-w-md w-full">
         <Command>

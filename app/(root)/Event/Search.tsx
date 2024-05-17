@@ -7,23 +7,25 @@ import { searchEventsByTitle } from "@/app/api/event.actions";
 import { useDebounce } from 'use-debounce';
 function Search() {
   const [searchText, setSearchText] = useState<string>("")
-  // const [resultText,setResultText] = useState<any>([])
-  // const [debouncedSearchText] = useDebounce(searchText, 3000); // Debounce search text
+  const [resultText,setResultText] = useState<any>([])
+  const [debouncedSearchText] = useDebounce(searchText, 3000); // Debounce search text
 
-  // useEffect(() => {
-  //   const getSearch = async () => {
-  //     console.log('Fetching search results...');
-  //     try {
-  //       const result = await searchEventsByTitle(debouncedSearchText); // Use debounced search text
-  //       setResultText(result);
-  //         if(debouncedSearchText.length <1){
-  //           setResultText(null) }
-  //     } catch (error) {
-  //       handleError(error);
-  //     }  
-  //   };
-  //     getSearch();
-  // }, [debouncedSearchText]); // Trigger effect on debounced search text
+  useEffect(() => {
+    const getSearch = async () => {
+      console.log('Fetching search results...');
+      try {
+        const result = await searchEventsByTitle(debouncedSearchText); // Use debounced search text
+        setResultText(result);
+          if(debouncedSearchText.length <1){
+            setResultText(null) }
+      } catch (error) {
+        handleError(error);
+      }  
+    };
+      getSearch();
+  }, [debouncedSearchText]); // Trigger effect on debounced search text
+
+ 
   return (
     <div className="  max-w-md w-full">
         <Command>
@@ -32,7 +34,7 @@ function Search() {
   <CommandEmpty>
   your result would be displayed here {'   '}
     </CommandEmpty>
-   {/* {   resultText?.length>0 ?(
+   {   resultText?.length>0 ?(
     <CommandGroup heading="Suggestions">
     {
        resultText.map((result:any)=>(
@@ -44,7 +46,7 @@ function Search() {
         ))
       }
     </CommandGroup>
-  ) : null} */}
+  ) : null}
   </CommandList>
 </Command>
 

@@ -180,9 +180,6 @@ export const getSimilarEvents = async ({
   }
 };
 
-type queryParams = {
-  query: string
-}
 // getting a search result for events
 export async function searchEventsByTitle(title: string) {
   try {

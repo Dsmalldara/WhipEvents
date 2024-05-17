@@ -6,7 +6,7 @@ import Link from "next/link"
 import { searchEventsByTitle } from "@/app/api/event.actions";
 import { useDebounce } from 'use-debounce';
 function Search() {
-  // const [searchText, setSearchText] = useState<string>("")
+  const [searchText, setSearchText] = useState<string>("")
   // const [resultText,setResultText] = useState<any>([])
   // const [debouncedSearchText] = useDebounce(searchText, 3000); // Debounce search text
 

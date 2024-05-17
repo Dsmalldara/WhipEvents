@@ -16,19 +16,18 @@ function Search() {
       try {
         const result = await searchEventsByTitle(debouncedSearchText); // Use debounced search text
         setResultText(result);
+          if(debouncedSearchText.length <1){
+            setResultText(null) }
       } catch (error) {
         handleError(error);
-      }
+      }  
     };
-
-    if (debouncedSearchText) {
       getSearch();
-    }
   }, [debouncedSearchText]); // Trigger effect on debounced search text
-  const renderedResultText = useMemo(() => {
-    console.log(searchText);
-    return resultText;
-  }, [resultText]);
+
+  // const renderedResultText = useMemo(() => {
+  //   return resultText;
+  // }, [resultText]);
   // Rest of your component code
   return (
     <div className="  max-w-md w-full">
@@ -38,10 +37,10 @@ function Search() {
   <CommandEmpty>
   your result would be displayed here {'   '}
     </CommandEmpty>
-   {  searchText.length > 0 && resultText.length>0 ?(
+   {   resultText?.length>0 ?(
     <CommandGroup heading="Suggestions">
     {
-       renderedResultText.map((result:any)=>(
+       resultText.map((result:any)=>(
           <Link href={`/Event/${result._id}`} key={result._id}>
           <CommandItem key={result._id} className="cursor-pointer">
          {result.title}

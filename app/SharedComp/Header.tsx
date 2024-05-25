@@ -6,6 +6,7 @@ import Navitems from './Navitems'
 import MobileNav from './MobileNav'
 import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 async function Header() {
   const {getUser} = getKindeServerSession()
   const user = await getUser()
@@ -24,7 +25,11 @@ async function Header() {
            {
                 user ?  
               <div className=" ml-[-2rem] flex flex-row  gap-2 pr-[2rem]">
-                 <img src={user.picture || "https://avatar.vercel.sh/rauchg"} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' />
+                 {/* <img src={user.picture || "https://avatar.vercel.sh/rauchg"} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' /> */}
+                 <Avatar>
+                  <AvatarImage src={user.picture || undefined} />
+                  <AvatarFallback>PP</AvatarFallback>
+                </Avatar>
                   <Button asChild className=' px-6 rounded-full  shadow' size='sm'>
                   <LogoutLink>Logout</LogoutLink>
                   </Button>

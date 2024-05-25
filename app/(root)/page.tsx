@@ -5,7 +5,6 @@ import EventCollection from "./Event/EventCollection";
 import { fetchAllEvents } from "../api/event.actions";
 import Search from "./Event/Search";
 export default async function Home() {
-  console.log(process.env.MONGODB_URI);
   const emojis = ["😊"];
   const events = await fetchAllEvents({
     query: "",

@@ -42,8 +42,7 @@ export async function GET() {
     }
 
     return NextResponse.redirect('https://whipevents.vercel.app');
-  } catch (error) {
-    console.error("Error occurred:", error.message, error.stack);
+  } catch (error) {;
     handleError(error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

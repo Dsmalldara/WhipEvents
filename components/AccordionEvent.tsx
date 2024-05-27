@@ -32,9 +32,9 @@ function AccordionEvent() {
     ];
     
   return (
-  <section className="w-full px-4 md:w-[60%] mx-auto">
+  <section className="w-full px-4 md:w-[60%] mx-auto mt-6 md:mt-4">
    <div className="flex gap-5">
-   <h2 className="text-center text-2xl md:h4-medium font-montserrat py-4">
+   <h2 className="text-center p-bold-20 md:h4-medium font-montserrat py-4">
     Discover Why WhipEvents Stands Out!
     </h2>
     <img alt="use whipevents " src="/c1.png" className="w-[6rem] h-[6rem]"/>

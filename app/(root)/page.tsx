@@ -4,6 +4,7 @@ import Link from "next/link";
 import EventCollection from "./Event/EventCollection";
 import { fetchAllEvents } from "../api/event.actions";
 import Search from "./Event/Search";
+import EventsCTA from "./Event/EventsCTA";
 export default async function Home() {
   const emojis = ["😊"];
   const events = await fetchAllEvents({
@@ -97,15 +98,11 @@ export default async function Home() {
           />
         </div>
       </section>
+      <EventsCTA/>
       <section
         id="events"
-        className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4"
-      >
-        <h2 className="h2-medium  px-[0.1rem] footer-font">
-          Trusted by
-          <br />
-          thousands of Organizers
-        </h2>
+        className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4"    >
+  
         {/* <div className="flex w-full flex-col md:flex-row gap-5 "> */}
         <div className="items-center justify-center flex">
           <Search />

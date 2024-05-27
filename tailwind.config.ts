@@ -19,6 +19,7 @@ module.exports = withUt({
       },
     },
     extend: {
+      
       colors: {
         primary: {
           500: '#624CF5',
@@ -72,6 +73,8 @@ module.exports = withUt({
       },
       fontFamily: {
         poppins: ['var(--font-poppins)'],
+        ojuju: [ 'var(--font-ojuju)'],
+        montserrat:['var(--font-monserrat)']
       },
       backgroundImage: {
         'dotted-pattern': "url('/assets/images/dotted-pattern.png')",

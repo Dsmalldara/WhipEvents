@@ -47,7 +47,7 @@ function AccordionEvent() {
                     <AccordionTrigger>
                         {reason.title}
                     </AccordionTrigger>
-                    <AccordionContent className="text-[1.2rem] leading-8 font-light">
+                    <AccordionContent className="md:text-[1.2rem] text-sm leading-8 font-light">
                         {reason.explanation}
                     </AccordionContent>
                 </AccordionItem>

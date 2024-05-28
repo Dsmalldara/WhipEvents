@@ -5,6 +5,7 @@ import EventCollection from "./Event/EventCollection";
 import { fetchAllEvents } from "../api/event.actions";
 import Search from "./Event/Search";
 import EventsCTA from "./Event/EventsCTA";
+import BentoSection from "../SharedComp/BentoSection";
 export default async function Home() {
   const emojis = ["😊"];
   const events = await fetchAllEvents({
@@ -15,7 +16,7 @@ export default async function Home() {
   });
 
   return (
-    <>
+    <div className="relative bg-primary-50">
       <section className="bg-primary-50  py-4 md:py-7  bg-contain">
         {/* wrapper makes sure that the content doesnt expand past it normal size */}
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0 ">
@@ -101,7 +102,7 @@ export default async function Home() {
       <EventsCTA/>
       <section
         id="events"
-        className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4"    >
+        className=" flex flex-col bg-primary-50 py-8 wrapper gap-8 md:gap-12 md:px-4  "    >
   
         {/* <div className="flex w-full flex-col md:flex-row gap-5 "> */}
         <div className="items-center justify-center flex">
@@ -119,6 +120,7 @@ export default async function Home() {
           totalPages={events?.totalPages}
         />
       </section>
-    </>
+      <BentoSection/>
+    </div>
   );
 }

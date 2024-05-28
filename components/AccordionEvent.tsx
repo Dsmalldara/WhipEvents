@@ -34,7 +34,7 @@ function AccordionEvent() {
   return (
   <section className="w-full px-4 md:w-[60%] mx-auto mt-6 md:mt-4">
    <div className="flex gap-5">
-   <h2 className="text-center p-bold-20 md:h4-medium font-montserrat py-4">
+   <h2 className="text-center p-bold-20 md:h4-medium font-ojuju py-4">
     Discover Why WhipEvents Stands Out!
     </h2>
     <img alt="use whipevents " src="/c1.png" className="w-[6rem] h-[6rem]"/>
@@ -42,9 +42,9 @@ function AccordionEvent() {
       <div className="">
     {
         reasons.map((reason, index) => (
-            <Accordion key={index} type="multiple" className=" no-underline">
+            <Accordion key={index} type="multiple" className="">
                 <AccordionItem value={index.toString()}> 
-                    <AccordionTrigger>
+                    <AccordionTrigger className="">
                         {reason.title}
                     </AccordionTrigger>
                     <AccordionContent className="md:text-[1.2rem] text-sm leading-8 font-light">

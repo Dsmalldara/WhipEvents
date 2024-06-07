@@ -1,9 +1,13 @@
 "use server";
+import { DropdownMenu,  DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent} from '@/components/ui/dropdown-menu'
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Navitems from "./Navitems";
 import MobileNav from "./MobileNav";
+import Image from 'next/image';
+import { MenuIcon } from 'lucide-react'
 import {
   RegisterLink,
   LoginLink,
@@ -30,35 +34,39 @@ async function Header() {
           <div>
             {user ? (
               <div className=" ml-[-2rem] flex flex-row  gap-2 pr-[2rem]">
-                {/* <img src={user.picture || "https://avatar.vercel.sh/rauchg"} alt="user picture " className='w-[4rem] h-[3rem] rounded-full' /> */}
-                <Button
-                  asChild
-                  className=" px-6 rounded-full  shadow"
-                  size="sm"
-                >
-                  <LogoutLink>Logout</LogoutLink>
-                </Button>
-                <Avatar>
+               
+                  <DropdownMenu>
+    <DropdownMenuTrigger className='flex outline-none  border rounded-full md:px-2 md:py-1  gap-1'>
+    <MenuIcon className='mx-auto my-auto md:block hidden'/>
+    <Avatar>
                   <AvatarImage src={user.picture || undefined} />
-                  <AvatarFallback>PP</AvatarFallback>
+                  <AvatarFallback> <Image src="/defaultUser.jpeg" alt='default image'  width={40} height={40}/></AvatarFallback>
                 </Avatar>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="mr-4">
+        <DropdownMenuItem >
+        <LogoutLink>Logout</LogoutLink>
+        </DropdownMenuItem>
+    </DropdownMenuContent>
+   </DropdownMenu>
               </div>
             ) : (
               <div className=" flex font-sans font-bold">
-                <Button
-                  asChild
-                  className=" md:px-6 px-3 rounded-full mr-2 shadow"
-                  size="sm"
-                >
-                  <LoginLink>Login</LoginLink>
-                </Button>
-                <Button
-                  asChild
-                  className=" md:px-6 px-3 rounded-full  shadow"
-                  size="sm"
-                >
-                  <RegisterLink>Sign up</RegisterLink>
-                </Button>
+              
+                    <DropdownMenu>
+    <DropdownMenuTrigger className='flex outline-none    border rounded-full md:px-2 md:py-1   gap-1'>
+    <MenuIcon className='mx-auto my-auto md:block hidden'/>
+   <Image src="/defaultUser.jpeg" alt='default image' className='rounded-full' width={40} height={40}/>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="mmr-4">
+       <DropdownMenuItem>
+        <RegisterLink>Register</RegisterLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+        <LoginLink>Login</LoginLink>
+        </DropdownMenuItem>
+    </DropdownMenuContent>
+   </DropdownMenu>
               </div>
             )}
           </div>

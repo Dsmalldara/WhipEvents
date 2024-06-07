@@ -51,7 +51,7 @@ export default async function Home() {
               alt="elipse  for header section"
               height={65}
               width={65}
-              className="absolute bottom-[14rem]  md:bottom-[8rem] md:left-[1.4rem] left-[-0.4rem] overflow-hidden"
+              className="absolute bottom-[14rem]  md:bottom-[8rem] md:left-[1.8rem] left-[-0.4rem] overflow-hidden"
             />
             <Image
               src="/Pattern2.png"

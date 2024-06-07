@@ -43,7 +43,7 @@ async function Header() {
                   <AvatarFallback> <Image src="/defaultUser.jpeg" alt='default image'  width={40} height={40}/></AvatarFallback>
                 </Avatar>
     </DropdownMenuTrigger>
-    <DropdownMenuContent className="mr-4">
+    <DropdownMenuContent className="md:mr-4">
         <DropdownMenuItem >
         <LogoutLink>Logout</LogoutLink>
         </DropdownMenuItem>
@@ -58,7 +58,7 @@ async function Header() {
     <MenuIcon className='mx-auto my-auto md:block hidden'/>
    <Image src="/defaultUser.jpeg" alt='default image' className='rounded-full' width={40} height={40}/>
     </DropdownMenuTrigger>
-    <DropdownMenuContent className="mmr-4">
+    <DropdownMenuContent className="md:mr-4">
        <DropdownMenuItem>
         <RegisterLink>Register</RegisterLink>
         </DropdownMenuItem>
@@ -70,7 +70,9 @@ async function Header() {
               </div>
             )}
           </div>
-          <MobileNav />
+         <div className="mr-4  md:mr-0">
+         <MobileNav />
+         </div>
         </div>
       </div>
     </header>
